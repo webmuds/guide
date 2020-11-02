@@ -6,6 +6,7 @@ All attributes work on a hierarchy, as follows:
 
 * **MUD-wide Attributes**: defaults for all races and classes.
 * **Race/Class Attributes**: modified defaults for specific races and classes.
+* **Character Attributes**: upon leveling up, characters can improve their own attributes, as chosen by creators.
 * **Effect Attributes**: skills that cause effects can increment or decrement attributes on targets.
 * **Gear Attributes**: upon wearing a piece of gear, the user will benefit from any attributes embedded in it.
 * **Weapon Attributes**: certain attributes, when present on weapons, will only modify attacks performed by that weapon.
