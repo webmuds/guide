@@ -1,10 +1,14 @@
 # Attributes
 
-The platform provides a large number of attributes that directly affect how characters can perform in battles.
+WebMUDs provides a vast number of attributes that can directly affect how characters perform in battles.
 
-Skills and items with attributes (wearables except weapons, consumables, etc) will add up with character attributes.
+All attributes work on a hierarchy, as follows:
 
-Weapons with attributes will only apply on attacks with them.
+* **MUD-wide Attributes**: defaults for all races and classes.
+* **Race/Class Attributes**: modified defaults for specific races and classes.
+* **Effect Attributes**: skills that cause effects can increment or decrement attributes on targets.
+* **Gear Attributes**: upon wearing a piece of gear, the user will benefit from any attributes embedded in it.
+* **Weapon Attributes**: certain attributes, when present on weapons, will only modify attacks performed by that weapon.
 
 ## Damage-Type Attributes
 
@@ -20,19 +24,21 @@ Example for a character with `Dmg = 20` and `FireDmg = -50` (negative):
 
 Increases damage output. Values are percentages, so having `Dmg = -20` will cause a 20% reduction of all damage output, having `Dmg = 50` will increase all damage output by 50%, etc.
 
+### `DmgPen` (Damage Penetration)
+
+A percentage value that indicates how much damage will ignore resistances. Having `DmgPen = 100` will cause **all** resistances to be ignored, so use with caution.
+
+### `CritC` (Critical Chance)
+
+The chance that the attack will be a critical hit. Having `CritC = 100` will cause all damage to always crit, so use with caution.
+
+### `CritD` (Critical Damage)
+
+The amount of extra damage dealt on a critical, as a percentage. Having `CritD = 50` will cause damage to increase by 50% on a critical hit.
+
 ### `Res` (Resistance Points)
 
 Reduces incoming damage. This attribute has diminishing returns, so having `Res = 100` will reduce incoming damage by 50%, `Res = 200` by 75%, etc.
-
-### `ResCapMin` and `ResCapMax` (Resistance Caps)
-
-Percentage values that represent the minimum and maximum amount of resistance percentages the character can earn.
-
-The maximum defaults to 100, and is used in the diminishing formula of the `Res` attribute.
-
-The minimum defaults to -100, meaning characters can be debuffed enough to take double incoming damage at most.
-
-Specific damage type values will take precedence. E.g., a character with `ResCapMax = 100` and `FireResCapMax = 80` means that they can reach 100% resistance values against all damage types but fire (80%).
 
 ### `ResPct` (Resistance Percentage)
 
@@ -46,7 +52,17 @@ Reduces the magnitude of incoming resistance debuffs. This attribute has diminis
 
 ### `ResDC` (Resistance Debuff Cleanse Points)
 
-Reduces the duration of resistance debuffs on the character. This attribute has diminishing returns, so `ResDP = 100` will reduce the duration of resistance debuffs by 50%.
+Reduces the duration of resistance debuffs on the character. This attribute has diminishing returns, so `ResDC = 100` will reduce the duration of resistance debuffs by 50%.
+
+### `ResCapMin` and `ResCapMax` (Resistance Caps)
+
+Percentage values that represent the minimum and maximum amount of resistance percentages the character can earn.
+
+The maximum defaults to 100, and is used in the diminishing formula of the `Res` attribute.
+
+The minimum defaults to -100, meaning characters can be debuffed enough to take double incoming damage at most.
+
+Specific damage type values will take precedence. E.g., a character with `ResCapMax = 100` and `FireResCapMax = 80` means that they can reach 100% resistance values against all damage types but fire (80%).
 
 ### `Def` (Defense Points)
 
@@ -60,14 +76,22 @@ Increases chance to evade by a percentage. A value of `DefPct = 100` means the c
 
 Reduces the magnitude of incoming defense debuffs. This attribute has diminishing returns, so `DefDR = 100` will reduce the magnitude of defense debuffs by 50%.
 
+### `DefDC` (Defense Debuff Cleanse Points)
+
+Reduces the duration of defense debuffs on the character. This attribute has diminishing returns, so `DefDC = 100` will reduce the duration of defense debuffs by 50%.
+
 ### `Acc` (Accuracy Points)
 
 Increases accuracy. A value of zero means the character will always miss.
 
 The final chance to hit is computed against the enemy's `Def`. If the `Acc` of the user and the `Def` of the enemy are above zero and equal, the chance to hit will be 50%.
 
+### `AccMod` (Accuracy Modifier)
+
+This attribute multiplies `Acc` points. Having `AccMod = 1.5` will cause every point in `Acc` to be worth 50% more points.
+
 ### `AccPct` (Accuracy Percentage)
 
-Increases accuracy by a percentage. A value of `AccPct = 100` means the user will always hit the target, regardless of the target's `Def`, so use with caution.
+Increases accuracy by a fixed percentage. A value of `AccPct = 100` means the user will always hit the target, regardless of the target's `Def`, so use with caution.
 
 Note: the final chance-to-hit percentage can be reduced if the enemy has any points in `DefPct`. In such cases, the basic chance-to-hit formula will apply between the final percentages (e.g., equal values yield 50% chance to hit).
