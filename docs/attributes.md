@@ -4,9 +4,9 @@ WebMUDs provides a vast number of attributes that can directly affect how charac
 
 All attributes work on a hierarchy, as follows:
 
-* **MUD-wide Attributes**: defaults for all races and classes.
+* **MUD-wide Attributes**: defaults for all races, classes, and NPCs.
 * **Race/Class Attributes**: modified defaults for specific races and classes.
-* **Character Attributes**: upon leveling up, characters can improve their own attributes, as chosen by creators.
+* **Character/NPC Attributes**: upon leveling up, characters can improve their own attributes if creators decide so.
 * **Effect Attributes**: skills that cause effects can increment or decrement attributes on targets.
 * **Gear Attributes**: upon wearing a piece of gear, the user will benefit from any attributes embedded in it.
 * **Weapon Attributes**: certain attributes, when present on weapons, will only modify attacks performed by that weapon.
@@ -43,13 +43,15 @@ Reduces incoming damage. This attribute has diminishing returns, so having `Res 
 
 ### `ResPct` (Resistance Percentage)
 
-Reduces incoming damage by a percentage. This attribute has no diminishing returns, so having `DmgResPct = 100` means total invinciblity, so use with caution.
+Reduces incoming damage by a percentage. This attribute has no diminishing returns, so having `ResPct = 100` means total invinciblity, so use with caution.
 
 While calculating damage resistance, this attribute is calculated first, then whatever damage is left is then subjected to reduction from the `Res` attribute.
 
-### `ResDR` (Resistance Debuff-Resistance Points)
+### `ResDR` and `ResDRPct` (Resistance Debuff-Resistance Points)
 
 Reduces the magnitude of incoming resistance debuffs. This attribute has diminishing returns, so `ResDR = 100` will reduce the magnitude of resistance debuffs by 50%.
+
+Use `ResDRPct` to apply a percentage directly. Having `ResDRPct = 100` means the user will be immune to resistance debuffs.
 
 ### `ResDC` (Resistance Debuff Cleanse Points)
 
@@ -57,9 +59,9 @@ Reduces the duration of resistance debuffs on the character. This attribute has 
 
 ### `ResCapMin` and `ResCapMax` (Resistance Caps)
 
-Percentage values that represent the minimum and maximum amount of resistance percentages the character can earn.
+Percentage values that represent the minimum and maximum amount of resistance percentages the character can earn. The default values can be adjusted by creators.
 
-The maximum defaults to 100, and is used in the diminishing formula of the `Res` attribute.
+The maximum defaults to 100, and is used in the diminishing formula of the `Res` attribute. Any value above 100 means the target will be **healed** when hit by an attack of that type, so use with caution.
 
 The minimum defaults to -100, meaning characters can be debuffed enough to take double incoming damage at most.
 
@@ -67,15 +69,17 @@ Specific damage type values will take precedence. E.g., a character with `ResCap
 
 ### `Def` (Defense Points)
 
-Increases chance to evade incoming damage. A value of zero means the character will have 100% chance to be hit by that damage type. A value above zero is then checked against the enemy's accuracy to determine if it's a hit or a miss.
+Increases chance to evade incoming damage. A value of zero means the character will always be hit. A value above zero is then checked against the enemy's accuracy to determine if it's a hit or a miss.
 
 ### `DefPct` (Defense Percentage)
 
-Increases chance to evade by a percentage. A value of `DefPct = 100` means the character will evade 100% of incoming damage, so use with caution.
+Increases chance to evade by a percentage. A value of `DefPct = 100` means the character will evade 100% of incoming damage regardless of the attacker's accuracy, so use with caution.
 
-### `DefDR` (Defense Debuff-Resistance)
+### `DefDR` and `DefDRPct` (Defense Debuff-Resistance)
 
 Reduces the magnitude of incoming defense debuffs. This attribute has diminishing returns, so `DefDR = 100` will reduce the magnitude of defense debuffs by 50%.
+
+Use `DefDRPct` to apply a percentage directly. Having `DefDRPct = 100` means the user will be immune to defense debuffs.
 
 ### `DefDC` (Defense Debuff Cleanse Points)
 
