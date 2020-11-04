@@ -11,6 +11,80 @@ All attributes work on a hierarchy, as follows:
 * **Gear Attributes**: upon wearing a piece of gear, the user will benefit from any attributes embedded in it.
 * **Weapon Attributes**: certain attributes, when present on weapons, will only modify attacks performed by that weapon.
 
+Most attributes follow the hierarchy above, allowing creators to have different attributes per race/class combination, being added up down the chain. For instance, a character with the following race/class combination:
+
+* MUD-wide `HpBase = +100`
+* Race `HpBase = +20`
+* Class `HpBase = -10`
+
+Will have an initial 110 health points.
+
+## Meter-related Attributes
+
+### `HpBase` (Health Points Base)
+
+The amount of health points that a character starts with.
+
+### `HpPts` (Health Points Bonus)
+
+Increases HP by an absolute amount of points.
+
+### `HpPct` (Health Percentage)
+
+Increases HP by a percentage, applied on `HpBase`.
+
+### `HpPct2` (Health Percentage Tier 2)
+
+Increases HP by a percentage, applied on the sum of `HpBase` and `HpPts`. This is a more powerful health bonus.
+
+### `HpCap` (Health Points Cap)
+
+The maximum amount of HP a character can earn.
+
+### `RgBase` (Regeneration Points Base)
+
+The amount of points health naturally regenerate per second.
+
+### `RgPts` (Regeneration Points Bonus)
+
+This attribute increases/decreases `RegenBase` by an absolute amount.
+
+### `RgHpPct` (Health-percentage Regeneration Percentage)
+
+This attribute represents the percentage of the character's maximum HP regenerated per second.
+
+### `RgPct` (Regeneration Bonus Percentage)
+
+This attribute increases the sum of `RegenBase` and the points-result of `RegenHealthPct` by a percentage.
+
+### `RgPct2` (Regeneration Bonus Percentage Tier 2)
+
+This attribute increases the sum of `RegenBase`, `RegenPts`, and the points-result of `RegenHealthPct` by a percentage. It's a more powerful regeneration bonus.
+
+### `RgDR` and `RgDRPct` (Regeneration Debuff Resistance Points/Percentage)
+
+This attribute reduces incoming regeneration debuffs by diminishing-return points, and/or a percentage.
+
+### `RgMod` (Regeneration Modifier)
+
+This attribute modifies the overall regeneration (after all calculations done). A character with `RegenMod = -0.1` will regenerate 10% less points than normal.
+
+### `SpBase` (Special Points Base)
+
+The amount of special points characters begin with.
+
+### `MvBase` (Movement Points Base)
+
+The amount of movement points characters begin with.
+
+### `MvDscPts` (Movement Discount Points)
+
+This attribute applies a discount upon usage of movement points. The resulting percentage has diminishing returns.
+
+### `MvDscPct` (Movement Discount Percentage)
+
+This attribute applies a discount on movement point usage by a percentage. `MvDscPct = 100` will make all movement skills cost zero movement points, so use with caution.
+
 ## Damage-Type Attributes
 
 Damage-type attributes are prefixed according to the damage type along with a base attribute.
