@@ -95,7 +95,7 @@ The chance that the attack will be a critical hit. Having `CritC = 100` will cau
 
 The amount of extra damage dealt on a critical, as a percentage. Having `CritD = 50` will cause damage to increase by 50% on a critical hit.
 
-### `Res` (Resistance Points)
+### `ResPts` (Resistance Points)
 
 Reduces incoming damage. This attribute has diminishing returns, so having `Res = 100` will reduce incoming damage by 50%, `Res = 200` by 75%, etc.
 
@@ -103,7 +103,7 @@ Reduces incoming damage. This attribute has diminishing returns, so having `Res 
 
 Reduces incoming damage by a percentage. This attribute has no diminishing returns, so having `ResPct = 100` means total invinciblity, so use with caution.
 
-While calculating damage resistance, this attribute is calculated first, then whatever damage is left is then subjected to reduction from the `Res` attribute.
+While calculating damage resistance, this attribute is calculated first, then whatever damage is left is then subjected to reduction from the `ResPts` attribute.
 
 ### `ResDR` and `ResDRPct` (Resistance Debuff-Resistance Points)
 
@@ -115,7 +115,7 @@ Use `ResDRPct` to apply a percentage directly. Having `ResDRPct = 100` means the
 
 Reduces the duration of resistance debuffs on the character. This attribute has diminishing returns, so `ResDC = 100` will reduce the duration of resistance debuffs by 50%.
 
-### `ResCapMin` and `ResCapMax` (Resistance Caps)
+### `ResMin` and `ResMax` (Resistance Caps)
 
 Percentage values that represent the minimum and maximum amount of resistance percentages the character can earn. The default values can be adjusted by creators.
 
@@ -123,9 +123,9 @@ The maximum defaults to 100, and is used in the diminishing formula of the `Res`
 
 The minimum defaults to -100, meaning characters can be debuffed enough to take double incoming damage at most.
 
-Specific damage type values will take precedence. E.g., a character with `ResCapMax = 100` and `FireResCapMax = 80` means that they can reach 100% resistance values against all damage types but fire (80%).
+Specific damage type values will take precedence. E.g., a character with `ResMax = 100` and `FireResMax = -20` means that they can reach 100% resistance values against all damage types but fire (80%).
 
-### `Def` (Defense Points)
+### `DefPts` (Defense Points)
 
 Increases chance to evade incoming damage. A value of zero means the character will always be hit. A value above zero is then checked against the enemy's accuracy to determine if it's a hit or a miss.
 
@@ -143,11 +143,11 @@ Use `DefDRPct` to apply a percentage directly. Having `DefDRPct = 100` means the
 
 Reduces the duration of defense debuffs on the character. This attribute has diminishing returns, so `DefDC = 100` will reduce the duration of defense debuffs by 50%.
 
-### `Acc` (Accuracy Points)
+### `AccPts` (Accuracy Points)
 
 Increases accuracy. A value of zero means the character will always miss.
 
-The final chance to hit is computed against the enemy's `Def`. If the `Acc` of the user and the `Def` of the enemy are above zero and equal, the chance to hit will be 50%.
+The final chance to hit is computed against the enemy's `DefPts`. If the `AccPts` of the user and the `DefPts` of the enemy are above zero and equal, the chance to hit will be 50%.
 
 ### `AccMod` (Accuracy Modifier)
 
@@ -155,6 +155,6 @@ This attribute multiplies `Acc` points. Having `AccMod = 1.5` will cause every p
 
 ### `AccPct` (Accuracy Percentage)
 
-Increases accuracy by a fixed percentage. A value of `AccPct = 100` means the user will always hit the target, regardless of the target's `Def`, so use with caution.
+Increases accuracy by a fixed percentage. A value of `AccPct = 100` means the user will always hit the target, regardless of the target's `DefPts`, so use with caution.
 
 Note: the final chance-to-hit percentage can be reduced if the enemy has any points in `DefPct`. In such cases, the basic chance-to-hit formula will apply between the final percentages (e.g., equal values yield 50% chance to hit).
