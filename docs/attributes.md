@@ -21,69 +21,53 @@ Will have an initial 110 health points.
 
 ## Meter-related Attributes
 
-### `HpBase` (Health Points Base)
+### `HpBase`, `SpBase`, `MvBase` (Health/Special/Movement Points Base)
 
-The amount of health points that a character starts with.
+The amount of health/special/movement points that a character starts with.
 
-### `HpPts` (Health Points Bonus)
+### `HpPts`, `SpPts`, `MvPts` (Health/Special/Movement Points Bonus)
 
-Increases HP by an absolute amount of points.
+Increases health/special/movement points by an absolute amount.
 
-### `HpPct` (Health Percentage)
+### `HpPct`, `SpPct`,  `MvPct` (Health/Special/Movement Percentage Bonus)
 
-Increases HP by a percentage, applied on `HpBase`.
+Increases health/special/movement points by a percentage, applied over their respective `*Base` attributes.
 
-### `HpPct2` (Health Percentage Tier 2)
+### `HpPct2`, `SpPct2`, `MvPct2` (Health/Special/Movement Percentage Tier 2)
 
-Increases HP by a percentage, applied on the sum of `HpBase` and `HpPts`. This is a more powerful health bonus.
+Increases health/special/movement points by a percentage, applied on the sum of their respective `*Base` and `*Pts` attributes. This is a more powerful bonus.
 
-### `HpCap` (Health Points Cap)
+### `HpMax`, `SpMax`, `MvMax` (Health/Special/Movement Points Cap)
 
-The maximum amount of HP a character can earn.
+The maximum amount of health/special/movement points a character can earn.
 
-### `RgBase` (Regeneration Points Base)
+### `HpRgBase`, `SpRgBase`, `MvRgBase` (Health/Special/Movement Regeneration Points Base)
 
-The amount of points health naturally regenerate per second.
+The amount of points health/special/movement naturally regenerate per second.
 
-### `RgPts` (Regeneration Points Bonus)
+### `HpRgPts`, `SpRgPts`, `MvRgPts` (Health/Special/Movement Regeneration Points Bonus)
 
-This attribute increases/decreases `RegenBase` by an absolute amount.
+This attribute increases/decreases `*RgBase` attributes by an absolute amount.
 
-### `RgHpPct` (Health-percentage Regeneration Percentage)
+### `HpRgPct`, `SpRgPct`, `MvRgPct` (Health/Special/Movement Regeneration Percentage)
 
-This attribute represents the percentage of the character's maximum HP regenerated per second.
+The percentage of maximum health/special/movement that can be regenerated per second. This can be combined with `*RgBase` and `*RgPts` to offer different levels of regeneration based on a character's maximum meter amounts.
 
-### `RgPct` (Regeneration Bonus Percentage)
+### `HpRgDR`, `SpRgDR`, `MvRgDR` (Health/Special/Movement Regeneration Debuff Resistance Points)
 
-This attribute increases the sum of `RegenBase` and the points-result of `RegenHealthPct` by a percentage.
+This attribute reduces incoming regeneration debuffs using a diminishing returns formula. A value of `100` in any of those attributes will reduce the potency of regeneration debuffs by 50%.
 
-### `RgPct2` (Regeneration Bonus Percentage Tier 2)
+### `HpRgMod`, `SpRgMod`, `MvRgMod` (Health/Special/Movement Regeneration Modifier)
 
-This attribute increases the sum of `RegenBase`, `RegenPts`, and the points-result of `RegenHealthPct` by a percentage. It's a more powerful regeneration bonus.
+This attribute modifies the overall regeneration (after all calculations done). A character with `HpRgMod = -0.1` will regenerate 10% less health points than normal.
 
-### `RgDR` and `RgDRPct` (Regeneration Debuff Resistance Points/Percentage)
+### `SpDscPts`, `MvDscPts` (Special/Movement Discount Points)
 
-This attribute reduces incoming regeneration debuffs by diminishing-return points, and/or a percentage.
+This attribute applies a discount upon usage of special/movement points. The resulting percentage has diminishing returns (100 points = 50% discount).
 
-### `RgMod` (Regeneration Modifier)
+### `SpDscPct`, `MvDscPct` (Special/Movement Discount Percentage)
 
-This attribute modifies the overall regeneration (after all calculations done). A character with `RegenMod = -0.1` will regenerate 10% less points than normal.
-
-### `SpBase` (Special Points Base)
-
-The amount of special points characters begin with.
-
-### `MvBase` (Movement Points Base)
-
-The amount of movement points characters begin with.
-
-### `MvDscPts` (Movement Discount Points)
-
-This attribute applies a discount upon usage of movement points. The resulting percentage has diminishing returns.
-
-### `MvDscPct` (Movement Discount Percentage)
-
-This attribute applies a discount on movement point usage by a percentage. `MvDscPct = 100` will make all movement skills cost zero movement points, so use with caution.
+This attribute applies a discount on special/movement point usage by a percentage. `MvDscPct = 100` will make all movement skills cost zero movement points, so use with caution.
 
 ## Damage-Type Attributes
 
